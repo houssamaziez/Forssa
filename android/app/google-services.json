@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438326743181",
+    "project_id": "forssa-af695",
+    "storage_bucket": "forssa-af695.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438326743181:android:b5ee1daae2cea5db38d2c4",
+        "android_client_info": {
+          "package_name": "com.example.forssa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438326743181-evdamgof8dio3d3dia3f1crr3civkdui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfbAOFFQVZg3dk1GibXSsYudlMn2kCs8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438326743181-evdamgof8dio3d3dia3f1crr3civkdui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
