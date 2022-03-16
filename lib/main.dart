@@ -6,6 +6,7 @@ import 'package:forssa/Model/list_app.dart';
 import 'package:forssa/screens/screen_start.dart';
 import 'package:forssa/screens/screen_stg.dart';
 import 'package:forssa/widget/botom_nav.dart';
+import 'package:forssa/widget/trd.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,7 +22,7 @@ Future<void> main() async {
   }
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const MyApp());
+  runApp(App());
 }
 
 class MyApp extends StatelessWidget {

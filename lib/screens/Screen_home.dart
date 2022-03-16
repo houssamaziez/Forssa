@@ -1,9 +1,12 @@
 // ignore_for_file: file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:forssa/Model/works.dart';
 import 'package:forssa/screens/profile_work.dart';
+import 'package:forssa/screens/screen_start.dart';
 import 'package:forssa/screens/screen_stg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,14 +76,20 @@ class _ScreenHomeState extends State<ScreenHome> {
             autoplay: true,
             itemBuilder: (BuildContext context, int index) {
               return Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      image: DecorationImage(
-                          image: NetworkImage(listpub[index]),
-                          fit: BoxFit.fitWidth)),
-                  height: 200,
-                  width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  child: Container(
+                    height: 200,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fitWidth,
+                      imageUrl: listpub[index],
+                      placeholder: (context, url) => spinkit,
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                    width: double.infinity,
+                  ),
                 ),
               );
             },
@@ -141,17 +150,24 @@ class _ScreenHomeState extends State<ScreenHome> {
     );
   }
 
-  GridView listcardjop(BuildContext context) {
-    return GridView.count(
-      childAspectRatio: (0.77),
-      controller: ScrollController(keepScrollOffset: false),
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      children: List.generate(listwork.length, (index) {
-        return cardjop(index, context);
-      }),
+  listcardjop(BuildContext context) {
+    return AnimationLimiter(
+      child: GridView.count(
+        childAspectRatio: (0.77),
+        controller: ScrollController(keepScrollOffset: false),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        children: List.generate(listwork.length, (index) {
+          return AnimationConfiguration.staggeredList(
+              duration: const Duration(milliseconds: 700),
+              position: index,
+              child: SlideAnimation(
+                  verticalOffset: 50.0,
+                  child: FadeInAnimation(child: cardjop(index, context))));
+        }),
+      ),
     );
   }
 
@@ -179,15 +195,25 @@ class _ScreenHomeState extends State<ScreenHome> {
                 tag: index,
                 child: Container(
                   height: 130,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              listwork[index]["urlimage"].toString()))),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: listwork[index]["urlimage"].toString(),
+                      placeholder: (context, url) => spinkit,
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  ),
                 ),
               ),
               Padding(

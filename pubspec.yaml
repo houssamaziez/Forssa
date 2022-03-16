@@ -51,6 +51,7 @@ dependencies:
   card_swiper: ^2.0.3
   selection_menu: ^1.0.0
   cached_network_image: ^3.2.0
+  introduction_screen: ^3.0.0
  
 
 dev_dependencies:

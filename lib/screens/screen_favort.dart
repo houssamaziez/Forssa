@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:forssa/Model/list_app.dart';
 import 'package:forssa/Model/works.dart';
 import 'package:forssa/screens/profile_work.dart';
+import 'package:forssa/screens/screen_start.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,16 +62,19 @@ class _ScreenfavortState extends State<Screenfavort> {
               Hero(
                 tag: index,
                 child: Container(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: listfavori[index]["urlimage"].toString(),
+                      placeholder: (context, url) => spinkit,
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  ),
                   height: 130,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              listfavori[index]["urlimage"].toString()))),
                 ),
               ),
               Padding(
