@@ -3,6 +3,7 @@ import 'package:forssa/screens/Screen_home.dart';
 import 'package:forssa/screens/var.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:share/share.dart';
 
 import '../Model/list_app.dart';
 import '../controller/login_controller.dart';
@@ -110,7 +111,9 @@ class _StngState extends State<Stng> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Share.share('Join us and search for a job https://example.com');
+              },
               child: Card(
                 child: ListTile(
                   leading: const Icon(

@@ -3,10 +3,22 @@ import 'package:forssa/screens/var.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyProfile extends StatelessWidget {
+import '../Model/list_app.dart';
+import '../widget/botom_nav.dart';
+
+var listskills = [];
+
+class MyProfile extends StatefulWidget {
   const MyProfile({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
+  String title = "", details = "";
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +60,26 @@ class MyProfile extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-                itemCount: 3,
+                itemCount: listskills.length,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    title: const Text(
-                      'title of skills',
+                    title: Text(
+                      listskills[index]["title"],
                     ),
-                    subtitle: const Text(
-                        "ejze fzje fzjef zejf zoeflz eflze jfkzej fzkej f"),
+                    subtitle: Text(
+                      listskills[index]["details"],
+                    ),
                     trailing: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.edit)),
+                        onPressed: () {
+                          setState(() {
+                            listskills.removeAt(index);
+                            listskillstorageg.write("skills", listskills);
+                            Get.back();
+                          });
+                        },
+                        icon: const Icon(Icons.delete)),
                   );
                 },
               ),
@@ -95,11 +115,17 @@ class MyProfile extends StatelessWidget {
                                       padding: const EdgeInsets.all(12.0),
                                       child: Text("Name skills".tr),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: TextField(
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder())),
+                                        decoration: const InputDecoration(
+                                            border: OutlineInputBorder()),
+                                        onChanged: (vul) {
+                                          setState(() {
+                                            title = vul;
+                                          });
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(12.0),
@@ -109,7 +135,11 @@ class MyProfile extends StatelessWidget {
                                       padding: const EdgeInsets.all(8.0),
                                       child: TextField(
                                         maxLines: 5,
-                                        onChanged: (vul) {},
+                                        onChanged: (vul) {
+                                          setState(() {
+                                            details = vul;
+                                          });
+                                        },
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
                                           filled: true,
@@ -135,7 +165,23 @@ class MyProfile extends StatelessWidget {
                                       child: Card(
                                         color: color2,
                                         child: MaterialButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              if (title != "" &&
+                                                  details != "") {
+                                                listskills.add({
+                                                  "title": title,
+                                                  "details": details,
+                                                });
+                                                listskillstorageg.write(
+                                                    "skills", listskills);
+                                                Get.back();
+                                              } else {
+                                                Get.snackbar("Error", "vide");
+                                              }
+                                              Get.off(MyHomePage());
+                                            });
+                                          },
                                           child: Text("Add skills".tr),
                                         ),
                                       ),

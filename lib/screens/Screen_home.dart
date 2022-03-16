@@ -177,6 +177,7 @@ class _ScreenHomeState extends State<ScreenHome> {
       child: InkWell(
         onTap: () {
           Get.to(ProfileWORK(
+            id: listwork[index]["id"].toString(),
             location: listwork[index]["wilaya"].toString(),
             pos: index,
             details: listwork[index]["ditails"].toString(),
@@ -274,6 +275,16 @@ class _ScreenHomeState extends State<ScreenHome> {
 
                                 listfavoriid
                                     .add(listwork[index]["id"].toString());
+                                Get.snackbar('Added to favourites',
+                                    listwork[index]["title"].toString(),
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ));
+
+                                listfavorstorageg.write("listid", listfavoriid);
+                                listfavorstorageg.write(
+                                    "listfavori", listfavori);
                               }
                             });
                           },

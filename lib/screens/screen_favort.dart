@@ -20,11 +20,13 @@ class _ScreenfavortState extends State<Screenfavort> {
   @override
   Widget build(BuildContext context) {
     return listfavori.isEmpty
-        ? Center(
-            child: Image.asset(
-              "images/Favorite.gif",
-              height: double.infinity,
-              fit: BoxFit.cover,
+        ? Container(
+            color: Colors.white,
+            child: Center(
+              child: Image.asset(
+                "images/Favorite.gif",
+                height: double.infinity,
+              ),
             ),
           )
         : GridView.count(
@@ -45,6 +47,7 @@ class _ScreenfavortState extends State<Screenfavort> {
       child: InkWell(
         onTap: () {
           Get.to(ProfileWORK(
+            id: listfavori[index]["id"].toString(),
             location: listfavori[index]["wilaya"].toString(),
             pos: index,
             details: listfavori[index]["ditails"].toString(),
@@ -138,6 +141,8 @@ class _ScreenfavortState extends State<Screenfavort> {
                                     .add(listfavori[index]["id"].toString());
                               }
                             });
+                            listfavorstorageg.write("listid", listfavoriid);
+                            listfavorstorageg.write("listfavori", listfavori);
                           },
                           icon: listfavoriid.contains(
                                     listfavori[index]["id"].toString(),

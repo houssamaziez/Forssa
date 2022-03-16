@@ -1,14 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:forssa/screens/Screen_home.dart';
 import 'package:forssa/screens/screen_start.dart';
+import 'package:forssa/screens/screen_stg.dart';
 import 'package:forssa/screens/var.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../Model/list_app.dart';
+
 class ProfileWORK extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final pos, image, title, details, location;
+  final pos, image, title, details, location, id;
 
   const ProfileWORK(
       {Key? key,
@@ -16,7 +20,8 @@ class ProfileWORK extends StatefulWidget {
       this.image,
       this.title,
       this.details,
-      required this.location})
+      required this.location,
+      required this.id})
       : super(key: key);
 
   @override
@@ -31,8 +36,16 @@ class _ProfileWORKState extends State<ProfileWORK> {
     numberCtrl.text = "085921191121";
   }
 
+  var listwork;
   @override
   Widget build(BuildContext context) {
+    listwork = listworkd
+        // ignore: prefer_if_null_operators
+        .where((element) =>
+            element["wilaya"] ==
+            (wlaya.read("wlaya") == null
+                ? dropdownvalue
+                : wlaya.read("wlaya")));
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -76,8 +89,52 @@ class _ProfileWORKState extends State<ProfileWORK> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite_border)),
+                          onPressed: () {
+                            setState(() {
+                              var c = listfavoriid.contains(
+                                widget.id,
+                              );
+
+                              if (c == true) {
+                                int c = listfavoriid.indexOf(widget.id);
+                                listfavoriid.remove(widget.id);
+                                listfavori.removeAt(c);
+                              } else {
+                                listfavori.addNonNull(
+                                  {
+                                    "title": widget.title,
+                                    "ditails": widget.details,
+                                    "urlimage": widget.image,
+                                    "id": widget.id,
+                                    "date": "date",
+                                    "wilaya": widget.location,
+                                  },
+                                );
+
+                                listfavoriid.add(widget.id);
+                                Get.snackbar(
+                                    'Added to favourites', widget.title,
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ));
+                                listfavorstorageg.write("listid", listfavoriid);
+                                listfavorstorageg.write(
+                                    "listfavori", listfavori);
+                              }
+                            });
+                          },
+                          icon: listfavoriid.contains(
+                                    widget.id,
+                                  ) ==
+                                  true
+                              ? const Icon(
+                                  Icons.favorite_outlined,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border,
+                                )),
                     ),
                   ],
                 ),

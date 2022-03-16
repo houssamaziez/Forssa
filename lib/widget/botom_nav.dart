@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
 var listwidget = const [
   Center(
-    child: Text("vide"),
+    child: Text("will be soon"),
   ),
   Screenfavort(),
   ScreenHome(),

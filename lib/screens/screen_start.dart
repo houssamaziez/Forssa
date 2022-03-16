@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:forssa/screens/home.dart';
-import 'package:forssa/screens/screen_chos.dart';
 import 'package:forssa/screens/var.dart';
 import 'package:get/get.dart';
 
 import '../widget/botom_nav.dart';
+import '../widget/trd.dart';
 
 class ScreenStart extends StatefulWidget {
   const ScreenStart({
@@ -21,9 +20,9 @@ class ScreenStart extends StatefulWidget {
 class _ScreenStartState extends State<ScreenStart> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 6), () {
+    Timer(const Duration(seconds: 4), () {
       if (user.read("id") == null) {
-        Get.off(const Screenchos());
+        Get.off(OnBoardingPage());
       } else {
         Get.off(MyHomePage());
       }
@@ -39,9 +38,12 @@ class _ScreenStartState extends State<ScreenStart> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Image.asset(
-              "images/forssalogo.png",
-              height: MediaQuery.of(context).size.height * 0.3,
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Image.asset(
+                "images/forssalogo.png",
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
             ),
             Text(
               'Forssa',
@@ -54,7 +56,9 @@ class _ScreenStartState extends State<ScreenStart> {
             const SizedBox(
               height: 20,
             ),
-            spinkit,
+            SpinKitPulse(
+              color: color2,
+            ),
             const Spacer(),
           ],
         ),

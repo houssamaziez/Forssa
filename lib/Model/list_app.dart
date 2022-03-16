@@ -1,5 +1,9 @@
+import 'package:get_storage/get_storage.dart';
+
 var listfavori = [];
 var listfavoriid = [];
+GetStorage listfavorstorageg = GetStorage();
+GetStorage listskillstorageg = GetStorage();
 
 var listpub = [
   "https://firebasestorage.googleapis.com/v0/b/forssa-af695.appspot.com/o/Mr%20.%20Yummy.png?alt=media&token=bf19053a-e143-49ed-b12b-f851ecb4fb04",
@@ -140,3 +144,4 @@ var wilayat = const [
   'Mostaganem',
   'other',
 ];
+GetStorage strg = GetStorage();

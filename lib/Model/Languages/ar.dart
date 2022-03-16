@@ -20,5 +20,12 @@ const Map<String, String> ar = {
   "change area": "تغير المنطقة",
   'Logout': 'تسجيل الخروج',
   'help': 'المساعدة',
-  'share App': 'شارك التطبيق'
+  'share App': 'شارك التطبيق',
+  'Our app is unique, innovative Made for job search (part-time) for students and unemployed people':
+      'تطبيقنا فريد ومبتكر للبحث عن عمل (بدوام جزئي) للطلاب والعاطلين عن العمل',
+  'Welcome to Forsa': 'مرحبا بكم في فرصة',
+  "Its Features": 'ميزاته',
+  ' By contracting with many stores and companies in all fields, we have provided you with very suitable discount offers':
+      'من خلال التعاقد مع العديد من المتاجر والشركات في جميع المجالات ، قدمنا لك عروض خصومات مناسبة للغاية',
+  'Continue with google': 'اكمل بحسابك على قوقل',
 };

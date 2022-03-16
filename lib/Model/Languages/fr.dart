@@ -20,5 +20,12 @@ const Map<String, String> fr = {
   "change area": "changer de zone",
   'Logout': 'Se déconnecter',
   'help': 'Aider',
-  'share App':'share App'
+  'share App': 'share App',
+  'Welcome to Forsa': 'Bienvenue sur Forsa',
+  'Our app is unique, innovative Made for job search (part-time) for students and unemployed people':
+      'Notre application est unique, innovante Conçue pour la recherche d emploi (à temps partiel) pour les étudiants et les chômeurs',
+  "Its Features": 'Ses caractéristiques',
+  ' By contracting with many stores and companies in all fields, we have provided you with very suitable discount offers':
+      'En contractant avec de nombreux magasins et entreprises dans tous les domaines, nous vous avons fourni des offres de réduction très adaptées',
+  'Continue with google': 'Continuer avec google',
 };
